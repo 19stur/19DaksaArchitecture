@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting - 19 Daksa Architecture</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* Mencegah scroll jika diperlukan */
+        }
+
+        #greeting {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Membuat video menutupi seluruh area tanpa distorsi */
+            z-index: -1; /* Pastikan video di belakang konten */
+        }
+
+        .greeting-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white; /* Ubah ke white untuk visibility */
+            z-index: 1; /* Pastikan konten di atas video */
+            background: rgba(0, 0, 0, 0.5); /* Overlay gradient untuk text lebih terlihat */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .greeting-content h1 {
+            font-size: 2.5em; /* Sesuaikan ukuran sesuai kebutuhan */
+        }
+
+        .greeting-content p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .greeting-content button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #ff5100; /* Contoh warna tombol */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .greeting-content button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Greeting scene dengan video background -->
+    <div id="greeting">
+        <video autoplay muted loop id="bg-video" playsinline>
+            <source src="video/action 1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="greeting-content">
+            <h3>HI, Welcome to 19 Daksa Architecture</h3>
+            <p>This Web Under Development🚧</p>
+            <button onclick="window.location.href = 'home.html';">Enter Site</button>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect ke home.html setelah 10 detik
+        setTimeout(() => {
+            window.location.href = 'home.html';
+        }, 10000);
+    </script>
+</body>
+<label class="switch" id="dark-mode-toggle">
+    <input type="checkbox" id="dark-mode-checkbox">
+    <span class="slider round"></span>
+</label>
+</html>
