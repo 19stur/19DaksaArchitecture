@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting - 19 Daksa Architecture</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* Mencegah scroll jika diperlukan */
+            font-family: 'Helvetica', 'Arial', sans-serif; /* Font modern untuk keseluruhan */
+        }
+
+        #greeting {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)); /* Gradient overlay untuk depth */
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Membuat video menutupi seluruh area tanpa distorsi */
+            z-index: -1; /* Pastikan video di belakang konten */
+            filter: brightness(0.9) contrast(1.1); /* Efek filter untuk tampilan lebih vibrant dan modern */
+        }
+
+        .greeting-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white; /* Ubah ke white untuk visibility */
+            z-index: 1; /* Pastikan konten di atas video */
+            background: rgba(0, 0, 0, 0.4); /* Overlay semi-transparan dengan blur untuk non-flat */
+            backdrop-filter: blur(10px); /* Efek blur untuk modern glassmorphism */
+            padding: 40px; /* Lebih besar untuk ruang */
+            border-radius: 20px; /* Lebih rounded untuk soft look */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Shadow kuat untuk depth, tidak flat */
+            animation: fadeInUp 1s ease-out; /* Animasi masuk dari bawah */
+        }
+
+        .greeting-content h3 { /* Ubah dari h1 ke h3 sesuai kode asli, tapi buat lebih besar */
+            font-size: 3em; /* Lebih besar untuk impact */
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Shadow teks untuk depth */
+            letter-spacing: 1px; /* Spacing modern */
+        }
+
+        .greeting-content p {
+            font-size: 1.5em; /* Lebih besar */
+            margin: 10px 0;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); /* Shadow teks */
+        }
+
+        .greeting-content button {
+            padding: 15px 30px; /* Lebih besar untuk tombol modern */
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #FFA500; /* Warna orange sesuai tema arsitektur */
+            color: white;
+            border: none;
+            border-radius: 50px; /* Fully rounded untuk modern pill shape */
+            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4); /* Shadow orange glow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .greeting-content button:hover {
+            background-color: #CC8400; /* Darker orange on hover */
+            transform: scale(1.1) translateY(-3px); /* Scale dan lift untuk non-flat */
+            box-shadow: 0 12px 25px rgba(255, 165, 0, 0.6); /* Glow lebih kuat */
+        }
+
+        /* Animasi fade-in up untuk konten */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Tambahan efek partikel sederhana (opsional, bisa hapus jika terlalu berat) */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0.5; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Greeting scene dengan video background -->
+    <div id="greeting">
+        <video autoplay muted loop id="bg-video" playsinline>
+            <source src="video/action 1.mp4" type="video/mp4"> <!-- Ganti dengan video kamu sendiri jika sudah -->
+            Your browser does not support the video tag.
+        </video>
+        <div class="greeting-content">
+            <h3>HI, Welcome to 19 Daksa Architecture</h3>
+            <p>This Web Under Development🚧</p>
+            <button onclick="window.location.href = 'home.html';">Enter Site</button>
+        </div>
+        <!-- Efek partikel untuk modern non-flat (opsional) -->
+        <div class="particles"></div>
+    </div>
+
+    <!-- Tambahan Logo di sini (akan muncul di greeting page juga) -->
+    <img id="logo" src="images/CV Logo.jpg" alt="19 Daksa Architecture Logo">
+
+    <script>
+        // Auto-redirect ke home.html setelah 10 detik
+        setTimeout(() => {
+            window.location.href = 'home.html';
+        }, 10000);
+
+        // Script untuk generate partikel sederhana (untuk efek modern)
+        const particlesContainer = document.querySelector('.particles');
+        for (let i = 0; i < 20; i++) { // Buat 20 partikel
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = particle.style.width;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+<label class="switch" id="dark-mode-toggle">
+    <input type="checkbox" id="dark-mode-checkbox">
+    <span class="slider round"></span>
+</label>
+</html>
